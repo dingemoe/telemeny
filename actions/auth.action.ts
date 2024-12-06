@@ -2,10 +2,17 @@
 
 import { cookies } from "next/headers";
 
-export const createAuthCookie = async () => {
-  cookies().set("userAuth", "myToken", { secure: true });
+export const createAuthCookie = () => {
+  const cookieStore = cookies(); // Hent cookies fra serverens forespørselskontekst
+  cookieStore.set("userAuth", "myToken", {
+    secure: true,
+    httpOnly: true,
+    path: "/",
+    maxAge: 3600, // 1 time
+  });
 };
 
-export const deleteAuthCookie = async () => {
-  cookies().delete("userAuth");
+export const deleteAuthCookie = () => {
+  const cookieStore = cookies();
+  cookieStore.delete("userAuth");
 };

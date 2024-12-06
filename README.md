@@ -68,4 +68,60 @@ Start the server
 npm run dev
 ```
 
-Now you can visit https://localhost:3000 in your browser.
+
+
+Error to install in stacktblizt (swc) problems:
+
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'standalone',
+  experimental: {
+    forceSwcTransforms: false
+  },
+  swcMinify: false
+}
+
+module.exports = nextConfig
+
+
+Løsning på npm install-problemet
+Du har en konflikt mellom apexcharts og react-apexcharts fordi react-apexcharts krever apexcharts@>=4.0.0, mens prosjektet ditt bruker apexcharts@3.54.1. Følg trinnene nedenfor for å løse dette:
+
+Installer med --legacy-peer-deps Hvis du ikke kan oppdatere apexcharts, bruk denne kommandoen:
+
+bash
+Kopier kode
+npm install --legacy-peer-deps
+Dette lar npm ignorere peer dependency-konflikter.
+
+Alternativ: Oppdater apexcharts Hvis det er mulig å oppdatere apexcharts, gjør dette:
+
+bash
+Kopier kode
+npm install apexcharts@latest
+Kontroller deretter at prosjektet fortsatt fungerer med den oppdaterte versjonen.
+
+Force-installasjon Hvis begge alternativene feiler, prøv å tvinge installasjonen (brukes med forsiktighet):
+
+bash
+Kopier kode
+npm install --force
+Løsning på manglende next
+Kommandoen npm run dev mislyktes fordi Next.js ikke er installert. Installer Next.js på nytt:
+
+bash
+Kopier kode
+npm install next
+Hvis next allerede er en del av package.json, men mangler i node_modules, kan en full reinstallasjon hjelpe:
+
+bash
+Kopier kode
+rm -rf node_modules package-lock.json
+npm install
+Etter installasjon
+Når npm install er fullført uten feil, kjør:
+
+bash
+Kopier kode
+npm run dev

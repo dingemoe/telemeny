@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-};
+  output: 'standalone',
+  experimental: {
+    forceSwcTransforms: false
+  },
+  swcMinify: false
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
